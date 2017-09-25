@@ -1,0 +1,60 @@
+{% extends '_layout.html' %}
+
+{% block contents %}
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">定义报表</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                报表编辑
+            </div>
+            <div class="panel-body">
+            <form role="form" method="post">
+                <div class="form-group">
+                    <label>名称</label>
+                    <input class="form-control" id="name" name="name" value="{{entity['name']}}">
+                </div>
+                <div class="form-group">
+                    <label>数据源</label>
+                    <select class="form-control" id="type" name="type">
+                        <option value="mysql">mysql</option>
+                        <option value="mongo">mongo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>脚本</label>
+                    <textarea class="form-control" id="script" name="script">{{entity['script']}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label>参数</label>
+                    <textarea class="form-control" id="params" name="script">
+                        {
+                           "field_name": "xxx",
+                           "display_name": "xxx",
+                           "query_id":1,
+                           "data_type": "string", //string, datetime
+                           "defalut_value": ""
+                        }
+                    </textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">保存</button>
+            </form>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-4">
+        <div class="list-group">
+            {% for item in items %}
+            <a href="/custom/{{item['id']}}" class="list-group-item">{{item["name"]}}</a>
+            {% end %}
+        </div>
+
+    </div>
+</div>
+{% end %}
